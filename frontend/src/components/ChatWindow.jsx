@@ -1,3 +1,4 @@
+// frontend/src/components/ChatWindow.jsx
 import { useState, useRef, useEffect } from 'react'
 import MessageBubble from './MessageBubble'
 import InputBar from './InputBar'
@@ -22,6 +23,7 @@ export default function ChatWindow({ lang }) {
     { role: 'bot', text: WELCOME[lang] || WELCOME['auto'] }
   ])
   const [loading, setLoading] = useState(false)
+  const [lastBotMessage, setLastBotMessage] = useState('')
   const bottomRef = useRef(null)
 
   useEffect(() => {
@@ -35,11 +37,11 @@ export default function ChatWindow({ lang }) {
     try {
       const { response, detectedLang } = await sendMessage(text, lang)
       setMessages(prev => [...prev, { role: 'bot', text: response, detectedLang }])
+      setLastBotMessage(response) // → déclenche la lecture vocale
     } catch {
-      setMessages(prev => [...prev, {
-        role: 'bot',
-        text: '⚠️ Désolé, une erreur est survenue. Réessaie dans un instant.'
-      }])
+      const errMsg = '⚠️ Désolé, une erreur est survenue. Réessaie dans un instant.'
+      setMessages(prev => [...prev, { role: 'bot', text: errMsg }])
+      setLastBotMessage(errMsg)
     }
     setLoading(false)
   }
@@ -48,7 +50,6 @@ export default function ChatWindow({ lang }) {
 
   return (
     <div className="chat-container">
-      {/* Messages area */}
       <div className="messages-area">
         {messages.map((msg, i) => (
           <MessageBubble key={i} msg={msg} index={i} />
@@ -64,7 +65,6 @@ export default function ChatWindow({ lang }) {
         <div ref={bottomRef} />
       </div>
 
-      {/* Suggestions */}
       <div className="suggestions-bar">
         {suggestions.map((s, i) => (
           <button key={i} className="suggestion-chip" onClick={() => handleSend(s)}>
@@ -73,8 +73,12 @@ export default function ChatWindow({ lang }) {
         ))}
       </div>
 
-      {/* Input */}
-      <InputBar onSend={handleSend} loading={loading} lang={lang} />
+      <InputBar
+        onSend={handleSend}
+        loading={loading}
+        lang={lang}
+        lastBotMessage={lastBotMessage}
+      />
     </div>
   )
 }

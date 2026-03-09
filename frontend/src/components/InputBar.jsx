@@ -1,4 +1,6 @@
+// frontend/src/components/InputBar.jsx
 import { useState } from 'react'
+import VoiceButton from './VoiceButton'
 
 const PLACEHOLDER = {
   auto: "Pose ta question... · Ask anything... · Laaj ci kow...",
@@ -7,7 +9,7 @@ const PLACEHOLDER = {
   wo:   "Laaj ci kow JOJ yi..."
 }
 
-export default function InputBar({ onSend, loading, lang }) {
+export default function InputBar({ onSend, loading, lang, lastBotMessage }) {
   const [value, setValue] = useState('')
 
   const handleSubmit = () => {
@@ -23,8 +25,22 @@ export default function InputBar({ onSend, loading, lang }) {
     }
   }
 
+  const handleTranscript = (transcript) => {
+    setValue(transcript)
+    setTimeout(() => {
+      onSend(transcript)
+      setValue('')
+    }, 300)
+  }
+
   return (
     <div className="input-bar">
+      <VoiceButton
+        lang={lang}
+        onTranscript={handleTranscript}
+        lastBotMessage={lastBotMessage}
+        disabled={loading}
+      />
       <input
         className="input-field"
         value={value}
