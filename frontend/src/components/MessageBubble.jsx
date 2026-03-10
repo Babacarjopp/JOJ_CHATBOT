@@ -7,7 +7,9 @@ export default function MessageBubble({ msg, index }) {
       style={{ animationDelay: `${index * 0.05}s` }}
     >
       {isBot && (
-        <div className="bot-avatar">🦁</div>
+        <div className="bot-avatar">
+  <img src="/lion.png" alt="JOJ" className="avatar-img" />
+</div>
       )}
       <div className={`bubble ${isBot ? 'bubble-bot' : 'bubble-user'}`}>
         <p>{msg.text}</p>

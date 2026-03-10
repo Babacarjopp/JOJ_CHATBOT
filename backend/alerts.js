@@ -36,7 +36,7 @@ const SCHEDULED_ALERTS = [
     id: 'football',
     time: '16:00',
     message: {
-      fr: '⚽ *Football* — Match Sénégal U18 dans 30 minutes au Stade LSS ! Allez les Lions 🦁',
+      fr: '⚽ *Football* — Match Sénégal U18 dans 30 minutes au Stade LSS ! Allez les Lions🦁 ',
       en: '⚽ *Football* — Senegal U18 match in 30 minutes at LSS Stadium! Go Lions 🦁',
       wo: '⚽ *Football* — Match Sénégal U18 ci 30 minutes ci Stade LSS ! Jëm ci Lions yi 🦁'
     }

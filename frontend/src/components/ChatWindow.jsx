@@ -56,7 +56,9 @@ export default function ChatWindow({ lang }) {
         ))}
         {loading && (
           <div className="typing-indicator">
-            <div className="typing-avatar">🦁</div>
+            <div className="typing-avatar">
+  <img src="/lion.png" alt="JOJ" className="avatar-img" />
+</div>
             <div className="typing-dots">
               <span /><span /><span />
             </div>

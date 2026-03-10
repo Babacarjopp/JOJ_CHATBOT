@@ -67,9 +67,9 @@ export default function App() {
       <div className="app-container">
         <header className="app-header">
           <div className="header-left">
-            <div className="logo-ring">
-              <span className="logo-emoji">🦁</span>
-            </div>
+           <div className="logo-ring">
+  <img src="/lion.png" alt="JOJ 2026" className="logo-img" />
+</div>
             <div className="header-titles">
               <h1 className="app-title">JOJ Assistant</h1>
               <span className="app-subtitle">Dakar 2026 · Youth Olympic Games</span>
