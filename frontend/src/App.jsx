@@ -12,6 +12,7 @@ const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'joj2026admin'
 export default function App() {
   const [lang, setLang] = useState('auto')
   const [showMap, setShowMap] = useState(false)
+  const [focusVenueId, setFocusVenueId] = useState(null)
   const [showDash, setShowDash] = useState(false)
   const [showAlerts, setShowAlerts] = useState(false)
   const [showPasswordModal, setShowPasswordModal] = useState(false)
@@ -67,9 +68,9 @@ export default function App() {
       <div className="app-container">
         <header className="app-header">
           <div className="header-left">
-           <div className="logo-ring">
-  <img src="/lion.png" alt="JOJ 2026" className="logo-img" />
-</div>
+            <div className="logo-ring">
+              <img src="/lion.png" alt="JOJ 2026" style={{width:"100%",height:"100%",objectFit:"contain",borderRadius:"50%"}} />
+            </div>
             <div className="header-titles">
               <h1 className="app-title">JOJ Assistant</h1>
               <span className="app-subtitle">Dakar 2026 · Youth Olympic Games</span>
@@ -83,7 +84,7 @@ export default function App() {
           </div>
         </header>
 
-        <ChatWindow lang={lang} />
+        <ChatWindow lang={lang} onOpenVenue={(id) => { setFocusVenueId(id); setShowMap(true) }} />
 
         <footer className="app-footer">
           <span>Powered by</span>
@@ -127,7 +128,7 @@ export default function App() {
         </div>
       )}
 
-      {showMap    && <MapView      onClose={() => setShowMap(false)} />}
+      {showMap    && <MapView      onClose={() => { setShowMap(false); setFocusVenueId(null) }} focusVenueId={focusVenueId} />}
       {showDash   && <Dashboard    onClose={() => setShowDash(false)} stats={stats} />}
       {showAlerts && <AlertsPanel  onClose={() => setShowAlerts(false)} />}
     </div>

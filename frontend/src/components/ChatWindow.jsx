@@ -18,7 +18,7 @@ const WELCOME = {
   wo:   "🦁 Asalaamaalekum ! Maa ngi JOJ Assistant. Naka nga def ci JOJ Dakar 2026 ?"
 }
 
-export default function ChatWindow({ lang }) {
+export default function ChatWindow({ lang, onOpenVenue }) {
   const [messages, setMessages] = useState([
     { role: 'bot', text: WELCOME[lang] || WELCOME['auto'] }
   ])
@@ -52,13 +52,11 @@ export default function ChatWindow({ lang }) {
     <div className="chat-container">
       <div className="messages-area">
         {messages.map((msg, i) => (
-          <MessageBubble key={i} msg={msg} index={i} />
+          <MessageBubble key={i} msg={msg} index={i} onOpenVenue={onOpenVenue} />
         ))}
         {loading && (
           <div className="typing-indicator">
-            <div className="typing-avatar">
-  <img src="/lion.png" alt="JOJ" className="avatar-img" />
-</div>
+            <div className="typing-avatar">🦁</div>
             <div className="typing-dots">
               <span /><span /><span />
             </div>
