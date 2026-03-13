@@ -49,7 +49,7 @@ export default function MessageBubble({ msg, index, onOpenVenue }) {
         </div>
       )}
 
-      <div className={`bubble ${isBot ? 'bubble-bot' : 'bubble-user'}`}>
+      <div className={`bubble ${isBot ? 'bubble-bot' : 'bubble-user'} ${msg.isOffline ? 'bubble-offline' : ''} ${msg.isError ? 'bubble-error' : ''}`}>
         <p>{msg.text}</p>
 
         {/* Bouton "Voir sur la carte" si lieu détecté */}

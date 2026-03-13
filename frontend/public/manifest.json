@@ -1,0 +1,33 @@
+{
+  "name": "JOJ Assistant — Dakar 2026",
+  "short_name": "JOJ 2026",
+  "description": "Chatbot officiel des Jeux Olympiques de la Jeunesse Dakar 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#00695C",
+  "theme_color": "#00897B",
+  "lang": "fr",
+  "icons": [
+    { "src": "/lion.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/lion.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Chatbot",
+      "short_name": "Chat",
+      "description": "Poser une question",
+      "url": "/",
+      "icons": [{ "src": "/lion.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Carte des sites",
+      "short_name": "Carte",
+      "description": "Voir les sites JOJ",
+      "url": "/?map=1",
+      "icons": [{ "src": "/lion.png", "sizes": "192x192" }]
+    }
+  ],
+  "categories": ["sports", "travel", "utilities"],
+  "screenshots": []
+}

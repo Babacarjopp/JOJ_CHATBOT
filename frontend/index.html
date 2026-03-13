@@ -2,15 +2,53 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- PWA Meta -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#00897B" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="JOJ 2026" />
+
+    <!-- Icons -->
     <link rel="icon" type="image/png" href="/lion.png" />
     <link rel="apple-touch-icon" href="/lion.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#00897B" />
-    <meta name="description" content="JOJ Assistant — Chatbot officiel des Jeux Olympiques de la Jeunesse Dakar 2026" />
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- SEO -->
+    <meta name="description" content="JOJ Assistant — Chatbot officiel des Jeux Olympiques de la Jeunesse Dakar 2026. Disponible en français, anglais et wolof." />
+    <meta name="keywords" content="JOJ, Dakar 2026, Jeux Olympiques Jeunesse, Sénégal, chatbot" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="JOJ Assistant — Dakar 2026" />
+    <meta property="og:description" content="Votre guide officiel pour les JOJ Dakar 2026" />
+    <meta property="og:image" content="/lion.png" />
+    <meta property="og:type" content="website" />
+
     <title>JOJ Assistant — Dakar 2026</title>
+
+    <!-- Splash screen couleur pendant chargement -->
+    <style>
+      body { background: #00695C; }
+      #root { background: transparent; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Enregistrement Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('✅ JOJ PWA: Service Worker enregistré', reg.scope))
+            .catch(err => console.log('❌ SW error:', err))
+        })
+      }
+    </script>
   </body>
 </html>

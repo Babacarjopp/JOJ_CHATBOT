@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import ChatWindow from './components/ChatWindow'
 import LanguageSelector from './components/LanguageSelector'
 import MapView from './components/MapView'
+import InstallPWA from './components/InstallPWA'
+import QuizPanel from './components/QuizPanel'
 import './App.css'
 
 const API_URL   = import.meta.env.VITE_API_URL   || 'http://localhost:3001'
@@ -9,6 +11,7 @@ const API_URL   = import.meta.env.VITE_API_URL   || 'http://localhost:3001'
 export default function App() {
   const [lang, setLang] = useState('auto')
   const [showMap, setShowMap] = useState(false)
+  const [showQuiz, setShowQuiz] = useState(false)
   const [focusVenueId, setFocusVenueId] = useState(null)
 
 
@@ -36,12 +39,14 @@ export default function App() {
           </div>
           <div className="header-right">
             <button className="map-btn" onClick={() => setShowMap(true)}>🗺️ Carte</button>
+            <button className="map-btn quiz-btn" onClick={() => setShowQuiz(true)}>🏅 Quiz</button>
             <LanguageSelector lang={lang} onChange={setLang} />
           </div>
         </header>
 
         <ChatWindow lang={lang} onOpenVenue={(id) => { setFocusVenueId(id); setShowMap(true) }} />
 
+        <InstallPWA />
         <footer className="app-footer">
           <span>Powered by</span>
           <span className="footer-badge">🏅 JOJ Dakar 2026</span>
@@ -52,6 +57,7 @@ export default function App() {
 
 
 
+      {showQuiz   && <QuizPanel   onClose={() => setShowQuiz(false)} lang={lang} />}
       {showMap    && <MapView      onClose={() => { setShowMap(false); setFocusVenueId(null) }} focusVenueId={focusVenueId} />}
     </div>
   )
